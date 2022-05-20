@@ -1,7 +1,4 @@
 accelerator:
-  displayName: Java Version
-
-  # options for the UI
   options:
   - name: javaVersion
     inputType: select
