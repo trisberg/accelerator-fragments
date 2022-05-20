@@ -1,17 +1,4 @@
-# Tanzu Application Platform Initialize Accelerator
-
-The following files are included:
-- `config/workload.yaml`: The definition of a Workload for a TAP Supply Chain
-- `catalog/catalog-info.yaml`: The definition of a Component to make the Workload available in the TAP GUI Catalog
-- `Tiltfile`: A Tiltfile to enable Live Update and Debugging for Java Workloads using the TAP IDE Plugin
-- `INSTRUCTIONS.md` : This file, providing instructions for preparing your project
-- `accelerator-log.md` : This is the log file from the accelerator engine processing
-
-## Preparing your my-project project
-
-Copy the provided `config` and `catalog` directories including the files they contain into your `my-project` project. Also copy the `Tiltfile` to the root directory of `my-project` project.
-
-You can now follow the instructions below to deploy and debug your project.
+# Tanzu Application Platform
 
 ## Working on your my-project project
 

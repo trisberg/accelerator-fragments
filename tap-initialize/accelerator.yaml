@@ -5,6 +5,7 @@ accelerator:
     - name: gitRepository
       inputType: text
       label: Git Repository
+      description: The Git repository where you plan to push this new project
       display: true
       required: true
 
@@ -12,6 +13,7 @@ accelerator:
       inputType: text
       label: Git Branch
       defaultValue: main
+      description: The Git branch you will use for this new project
       display: true
       required: true
 
@@ -34,7 +36,7 @@ engine:
   merge:
     - include: ["**/*"]
       exclude:
-        ["README.md", "INSTUCTIONS.md", "LICENSE", "live-update/**", "config/**l", "catalog/**", "Tiltfile"]
+        ["README.md", "DEPLOYING.md", "LICENSE", "live-update/**", "config/**l", "catalog/**", "Tiltfile"]
     - include: ["config/workload.yaml"]
       chain:
         - type: ReplaceText
@@ -67,7 +69,7 @@ engine:
             - text: dev.local
               with: "#sourceRepositoryPrefix"
     - condition: "#liveUpdateIDESupport"
-      include: ["live-update/INSTRUCTIONS.md"]
+      include: ["live-update/DEPLOYING.md"]
       chain:
         - type: ReplaceText
           substitutions:
@@ -78,9 +80,9 @@ engine:
             - text: dev.local
               with: "#sourceRepositoryPrefix"
         - type: RewritePath
-          rewriteTo: "'INSTRUCTIONS.md'"
+          rewriteTo: "'DEPLOYING.md'"
     - condition: "!#liveUpdateIDESupport"
-      include: ["INSTRUCTIONS.md"]
+      include: ["DEPLOYING.md"]
       chain:
         - type: ReplaceText
           substitutions:
