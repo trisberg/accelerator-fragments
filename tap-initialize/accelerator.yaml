@@ -2,33 +2,33 @@ accelerator:
   displayName: TAP Initialize
 
   options:
-  - name: gitRepository
-    inputType: text
-    label: Git Repository
-    display: true
-    required: true
+    - name: gitRepository
+      inputType: text
+      label: Git Repository
+      display: true
+      required: true
 
-  - name: gitBranch
-    inputType: text
-    label: Git Branch
-    defaultValue: main
-    display: true
-    required: true
+    - name: gitBranch
+      inputType: text
+      label: Git Branch
+      defaultValue: main
+      display: true
+      required: true
 
-  - name: liveUpdateIDESupport
-    inputType: checkbox
-    label: Include TAP IDE Support for Java Workloads
-    display: true
-    dataType: boolean
-    defaultValue: false
+    - name: liveUpdateIDESupport
+      inputType: checkbox
+      label: Include TAP IDE Support for Java Workloads
+      display: true
+      dataType: boolean
+      defaultValue: false
 
-  - name: sourceRepositoryPrefix
-    inputType: text
-    label: The source repository prefix to use when pushing the source
-    description: The prefix for the repository where source can be stored during development
-    defaultValue: dev.local
-    dependsOn:
-      name: liveUpdateIDESupport
+    - name: sourceRepositoryPrefix
+      inputType: text
+      label: The source repository prefix to use when pushing the source
+      description: The prefix for the repository where source can be stored during development
+      defaultValue: dev.local
+      dependsOn:
+        name: liveUpdateIDESupport
 
 engine:
   merge:
