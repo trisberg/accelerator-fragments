@@ -1,11 +1,5 @@
 accelerator:
   displayName: Java Version
-  description: An accelerator that sets the Java version to use
-  iconUrl: https://ih0.redbubble.net/image.120572646.8382/sticker,375x360-bg,ffffff.u3.png
-  tags:
-  - java
-  - version
-  - import
 
   # options for the UI
   options:
