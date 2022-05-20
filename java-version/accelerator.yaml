@@ -1,0 +1,37 @@
+accelerator:
+  displayName: Java Version
+  description: An accelerator that sets the Java version to use
+  iconUrl: https://ih0.redbubble.net/image.120572646.8382/sticker,375x360-bg,ffffff.u3.png
+  tags:
+  - java
+  - version
+  - import
+
+  # options for the UI
+  options:
+  - name: javaVersion
+    inputType: select
+    choices:
+    - value: "1.8"
+      text: Java 8
+    - value: "11"
+      text: Java 11
+    - value: "17"
+      text: Java 17
+    defaultValue: "11"
+    required: true
+
+engine:
+  merge:
+    - include: [ "pom.xml" ]
+      chain:
+      - type: ReplaceText
+        regex:
+          pattern: "<java.version>.*<"
+          with: "'<java.version>' + #javaVersion + '<'"
+    - include: [ "build.gradle" ]
+      chain:
+      - type: ReplaceText
+        regex:
+          pattern: "sourceCompatibility = .*"
+          with: "'sourceCompatibility = ''' + #javaVersion + ''''"
