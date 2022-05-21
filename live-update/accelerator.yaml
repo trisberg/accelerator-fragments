@@ -31,7 +31,7 @@ engine:
             - text: dev.local
               with: "#sourceRepositoryPrefix"
     - condition: "#liveUpdateIDESupport"
-      include: ["LIVE_UPDATE.md"]
+      include: ["DEPLOYING.md"]
       chain:
         - type: ReplaceText
           substitutions:
@@ -41,5 +41,3 @@ engine:
           substitutions:
             - text: dev.local
               with: "#sourceRepositoryPrefix"
-        - type: RewritePath
-          rewriteTo: "'DEPLOYING.md'"
