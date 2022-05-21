@@ -17,21 +17,6 @@ accelerator:
       display: true
       required: true
 
-    - name: liveUpdateIDESupport
-      inputType: checkbox
-      label: Include TAP IDE Support for Java Workloads
-      display: true
-      dataType: boolean
-      defaultValue: false
-
-    - name: sourceRepositoryPrefix
-      inputType: text
-      label: The source repository prefix to use when pushing the source
-      description: The prefix for the repository where source can be stored during development
-      defaultValue: dev.local
-      dependsOn:
-        name: liveUpdateIDESupport
-
 engine:
   merge:
     - include: ["config/workload.yaml"]
@@ -54,32 +39,7 @@ engine:
           substitutions:
             - text: my-project
               with: "#artifactId"
-    - condition: "#liveUpdateIDESupport"
-      include: ["Tiltfile"]
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: my-project
-              with: "#artifactId"
-        - type: ReplaceText
-          substitutions:
-            - text: dev.local
-              with: "#sourceRepositoryPrefix"
-    - condition: "#liveUpdateIDESupport"
-      include: ["live-update/DEPLOYING.md"]
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: my-project
-              with: "#artifactId"
-        - type: ReplaceText
-          substitutions:
-            - text: dev.local
-              with: "#sourceRepositoryPrefix"
-        - type: RewritePath
-          rewriteTo: "'DEPLOYING.md'"
-    - condition: "!#liveUpdateIDESupport"
-      include: ["DEPLOYING.md"]
+    - include: ["DEPLOYING.md"]
       chain:
         - type: ReplaceText
           substitutions:

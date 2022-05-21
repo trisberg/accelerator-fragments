@@ -28,34 +28,3 @@ These are the basic steps to use live update:
 1. When the Live Update status in the status bar is visible, resolve to "Live Update Started", navigate to http://localhost:8080 in your browser, and view your running application.
 1. Make changes to the source code. When the codes is saved the running application will get updated.
 1. Either continue making changes, or stop the live update when finished. Open the command palette (⇧⌘P), type "Tanzu", and select `Tanzu: Live Update Stop`.
-
-### Deploying to Kubernetes as a TAP workload with Tanzu CLI
-
-If you make modifications to the source you must push the changes to your Git repository.
-
-When you are done developing your function app, you can simply deploy it using:
-
-```
-tanzu apps workload apply -f config/workload.yaml
-```
-
-If you would like to deploy the code from your local working directory you can use the following command:
-
-```
-tanzu apps workload create my-project -f config/workload.yaml \
-  --local-path . \
-  --source-image registry.example.com/project-source \
-  --type web
-```
-
-### Accessing the app deployed to your cluster
-
-Determine the URL to use for the accessing the app by running:
-
-```
-tanzu apps workload get my-project
-```
-
-To access the deployed app use the URL shown under "Workload Knative Services".
-
-This depends on the TAP installation having DNS configured for the Knative ingress.
