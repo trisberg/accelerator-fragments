@@ -34,9 +34,6 @@ accelerator:
 
 engine:
   merge:
-    - include: ["**/*"]
-      exclude:
-        ["README.md", "DEPLOYING.md", "LICENSE", "live-update/**", "config/**l", "catalog/**", "Tiltfile"]
     - include: ["config/workload.yaml"]
       chain:
         - type: ReplaceText
