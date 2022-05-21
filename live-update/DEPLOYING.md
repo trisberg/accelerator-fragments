@@ -46,18 +46,12 @@ tanzu apps workload create my-project -f config/workload.yaml \
 
 ### Accessing the app deployed to your cluster
 
-If you don't have `curl` installed it can be installed using downloads here: https://curl.se/download.html
-
 Determine the URL to use for the accessing the app by running:
 
 ```
 tanzu apps workload get my-project
 ```
 
-To invoke the deployed function run the following `curl` command in another terminal window:
-
-```
-curl <URL> -w'\n' -H 'Content-Type: text/plain' -d Fun
-```
+To access the deployed app use the URL shown under "Workload Knative Services".
 
 This depends on the TAP installation having DNS configured for the Knative ingress.
