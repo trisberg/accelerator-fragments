@@ -17,9 +17,20 @@ accelerator:
       display: true
       required: true
 
+    - name: deploymentType
+      label: Deployment Type
+      inputType: select
+      choices:
+      - value: workload
+        text: TAP workload
+      defaultValue: workload
+      required: false
+      display: false
+
 engine:
   merge:
     - include: ["config/workload.yaml"]
+      condition: "#deploymentType == 'workload'"
       chain:
         - type: ReplaceText
           substitutions:
@@ -34,12 +45,14 @@ engine:
             - text: main
               with: "#gitBranch"
     - include: ["catalog/catalog-info.yaml"]
+      condition: "#deploymentType == 'workload'"
       chain:
         - type: ReplaceText
           substitutions:
             - text: my-project
               with: "#artifactId"
     - include: ["DEPLOYING.md"]
+      condition: "#deploymentType == 'workload'"
       chain:
         - type: ReplaceText
           substitutions:
