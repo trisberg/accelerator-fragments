@@ -26,10 +26,7 @@ accelerator:
 
     - name: deploymentType
       label: Deployment Type
-      inputType: select
-      choices:
-      - value: workload
-        text: TAP workload
+      inputType: text
       defaultValue: workload
       required: false
       display: false
