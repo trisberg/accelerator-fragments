@@ -8,9 +8,6 @@ accelerator:
       description: The Git repository where you plan to push this new project
       display: true
       required: true
-      # dependsOn:
-      #   name: deploymentType
-      #   value: workload
 
     - name: gitBranch
       condition: "#deploymentType == 'workload'"
@@ -20,21 +17,10 @@ accelerator:
       description: The Git branch you will use for this new project
       display: true
       required: true
-      # dependsOn:
-      #   name: deploymentType
-      #   value: workload
-
-    - name: deploymentType
-      label: Deployment Type
-      inputType: text
-      defaultValue: workload
-      required: false
-      display: false
 
 engine:
   merge:
     - include: ["config/workload.yaml"]
-      condition: "#deploymentType == 'workload'"
       chain:
         - type: ReplaceText
           substitutions:
@@ -49,14 +35,12 @@ engine:
             - text: main
               with: "#gitBranch"
     - include: ["catalog/catalog-info.yaml"]
-      condition: "#deploymentType == 'workload'"
       chain:
         - type: ReplaceText
           substitutions:
             - text: my-project
               with: "#artifactId"
     - include: ["DEPLOYING.md"]
-      condition: "#deploymentType == 'workload'"
       chain:
         - type: ReplaceText
           substitutions:
