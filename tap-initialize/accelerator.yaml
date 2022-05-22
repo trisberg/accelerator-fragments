@@ -3,6 +3,7 @@ accelerator:
 
   options:
     - name: gitRepository
+      condition: "#deploymentType == 'workload'"
       inputType: text
       label: Git Repository
       description: The Git repository where you plan to push this new project
@@ -10,6 +11,7 @@ accelerator:
       required: true
 
     - name: gitBranch
+      condition: "#deploymentType == 'workload'"
       inputType: text
       label: Git Branch
       defaultValue: main
