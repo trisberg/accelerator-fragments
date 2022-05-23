@@ -7,7 +7,7 @@ accelerator:
       label: Include TAP IDE Support for Java Workloads
       display: true
       dataType: boolean
-      defaultValue: false
+      defaultValue: true
 
     - name: sourceRepositoryPrefix
       inputType: text
