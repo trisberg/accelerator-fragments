@@ -4,7 +4,7 @@ accelerator:
   options:
     - name: greeting
       inputType: text
-      label: Greeting
+      label: Testing Testing
       description: The greeting to use
       display: true
       required: true
