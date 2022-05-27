@@ -2,6 +2,13 @@ accelerator:
   displayName: TAP Initialize
 
   options:
+    - name: greeting
+      inputType: text
+      label: Greeting
+      description: The greeting to use
+      display: true
+      required: true
+
     - name: gitRepository
       inputType: text
       label: Git Repository
