@@ -1,0 +1,6 @@
+accelerator:
+
+  imports:
+  - name: tap-initialize
+  - name: live-update
+  - name: java-version
