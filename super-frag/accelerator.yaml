@@ -1,6 +1,15 @@
 accelerator:
 
+  options:
+  - name: flavor
+    dataType: string
+    defaultValue: Strawberry
+
   imports:
   - name: tap-initialize
   - name: live-update
   - name: java-version
+  - name: super-frag
+    expose:
+      - name: flavor
+        as: fruit
