@@ -55,8 +55,8 @@ engine:
     - include: [ "config/workload.yaml" ]
       chain:
       - type: OpenRewriteRecipe
-        condition: "!#files.contentsOf('config/workload.yaml').get().contains('- name: BP_JVM_VERSION')"
+        #condition: "!#files.contentsOf('config/workload.yaml').get().contains('- name: BP_JVM_VERSION')"
         recipe: org.openrewrite.yaml.MergeYaml
         options:
           key: "'$.spec'"
-          yaml: "'build:\n  env:\n    - name: BP_JVM_VERSION\n      value: \"'+ #workloadJavaVersion + '\"'"
+          yaml: "'build:\n  env:\n    - name: MY_JVM_VERSION\n      value: \"'+ #workloadJavaVersion + '\"'"
