@@ -44,13 +44,13 @@ engine:
 
     # workload.yaml
     # Covers a case when BP_JVM_VERSION is already defined in the workload.yaml
-    - include: [ "config/workload.yaml" ]
-      chain:
-      - type: OpenRewriteRecipe
-        recipe: org.openrewrite.yaml.ChangeValue
-        options:
-          oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
-          value: "#workloadJavaVersion"
+    # - include: [ "config/workload.yaml" ]
+    #   chain:
+    #   - type: OpenRewriteRecipe
+    #     recipe: org.openrewrite.yaml.ChangeValue
+    #     options:
+    #       oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
+    #       value: "#workloadJavaVersion"
     # Covers a case when BP_JVM_VERSION is not defined yet in the workload.yaml
     - include: [ "config/workload.yaml" ]
       chain:
@@ -58,5 +58,6 @@ engine:
         #condition: "!#files.contentsOf('config/workload.yaml').get().contains('- name: BP_JVM_VERSION')"
         recipe: org.openrewrite.yaml.MergeYaml
         options:
-          key: "'$.spec'"
-          yaml: "'build:\n  env:\n    - name: MY_JVM_VERSION\n      value: \"'+ #workloadJavaVersion + '\"'"
+          # key: "'$.spec'"
+          key: '"$.spec.build.env"'
+          yaml: "'- name: BP_JVM_VERSION\n      value: \"'+ #workloadJavaVersion + '\"'"
