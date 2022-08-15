@@ -60,4 +60,4 @@ engine:
         options:
           # key: "'$.spec'"
           key: '"$.spec.build.env"'
-          yaml: "'- name: BP_JVM_VERSION\n      value: \"'+ #workloadJavaVersion + '\"'"
+          yaml: "'- name: MY_JVM_VERSION\n      value: \"'+ #workloadJavaVersion + '\"'"
