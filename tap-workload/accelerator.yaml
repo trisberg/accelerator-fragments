@@ -1,41 +1,21 @@
 accelerator:
   displayName: TAP Workload
 
-  # options:
-  #   - name: gitRepository
-  #     inputType: text
-  #     label: Git Repository
-  #     description: The Git repository where you plan to push this new project
-  #     display: true
-  #     required: true
-  #
-  #   - name: gitBranch
-  #     inputType: text
-  #     label: Git Branch
-  #     defaultValue: main
-  #     description: The Git branch you will use for this new project
-  #     display: true
-  #     required: true
-
 engine:
   merge:
-    - include: ["config/workload.yaml"]
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: "https://git.example.com/my-repo"
-              with: "#gitRepository"
-        - type: ReplaceText
-          substitutions:
-            - text: my-project
-              with: "#artifactId"
-        - type: ReplaceText
-          substitutions:
-            - text: main
-              with: "#gitBranch"
-    - include: ["catalog/catalog-info.yaml"]
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: my-project
-              with: "#artifactId"
+  - include: [ "config/workload.yaml" ]
+    chain:
+    - type: OpenRewriteRecipe
+      recipe: org.openrewrite.yaml.ChangeValue
+      options:
+        oldKeyPath: '"$.spec.source.git.ref.branch"'
+        value: "#gitBranch"
+    - type: OpenRewriteRecipe
+      recipe: org.openrewrite.yaml.ChangeValue
+      options:
+        oldKeyPath: '"$.spec.source.git.url"'
+        value: "#gitRepository"
+    # - type: ReplaceText
+    #   substitutions:
+    #   - text: "https://github.com/sample-accelerators/spring-cloud-function.git"
+    #     with: "'https://github.com/trisberg/' + #artifactId"
