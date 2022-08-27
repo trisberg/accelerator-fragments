@@ -16,12 +16,13 @@ engine:
         - text: sample-project
           with: "#artifactId"
       - type: OpenRewriteRecipe
-        condition: "#gitProvided"
+        condition: "#gitBranch > ''"
         recipe: org.openrewrite.yaml.ChangeValue
         options:
           oldKeyPath: '"$.spec.source.git.ref.branch"'
           value: "#gitBranch"
       - type: OpenRewriteRecipe
+        condition: "#gitRepository > ''"
         recipe: org.openrewrite.yaml.ChangeValue
         options:
           oldKeyPath: '"$.spec.source.git.url"'
