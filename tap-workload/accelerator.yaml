@@ -2,20 +2,33 @@ accelerator:
   displayName: TAP Workload
 
 engine:
-  merge:
-  - include: [ "config/workload.yaml" ]
-    chain:
-    - type: OpenRewriteRecipe
-      recipe: org.openrewrite.yaml.ChangeValue
-      options:
-        oldKeyPath: '"$.spec.source.git.ref.branch"'
-        value: "#gitBranch"
-    - type: OpenRewriteRecipe
-      recipe: org.openrewrite.yaml.ChangeValue
-      options:
-        oldKeyPath: '"$.spec.source.git.url"'
-        value: "#gitRepository"
-    # - type: ReplaceText
-    #   substitutions:
-    #   - text: "https://github.com/sample-accelerators/spring-cloud-function.git"
-    #     with: "'https://github.com/trisberg/' + #artifactId"
+  chain:
+  - merge:
+    - include: ["config/workload.yaml"]
+    - include: ["catalog/catalog-info.yaml"]
+    - type: UniquePath
+      strategy: FavorForeign
+  - merge:
+    - include: [ "config/workload.yaml" ]
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: sample-project
+          with: "#artifactId"
+      - type: OpenRewriteRecipe
+        condition: "#gitProvided"
+        recipe: org.openrewrite.yaml.ChangeValue
+        options:
+          oldKeyPath: '"$.spec.source.git.ref.branch"'
+          value: "#gitBranch"
+      - type: OpenRewriteRecipe
+        recipe: org.openrewrite.yaml.ChangeValue
+        options:
+          oldKeyPath: '"$.spec.source.git.url"'
+          value: "#gitRepository"
+    - include: ["catalog/catalog-info.yaml"]
+      chain:
+      - type: ReplaceText
+        substitutions:
+          - text: sample-project
+            with: "#artifactId"

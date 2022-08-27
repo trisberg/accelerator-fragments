@@ -1,0 +1,17 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: sample-project
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/part-of: sample-project
+spec:
+  build:
+    env:
+      - name: BP_JVM_VERSION
+        value: "11"
+  source:
+    git:
+      url: https://git.example.com/sample-repo
+      ref:
+        branch: main
