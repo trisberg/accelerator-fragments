@@ -27,6 +27,11 @@ engine:
         options:
           oldKeyPath: '"$.spec.source.git.url"'
           value: "#gitRepository"
+      - type: OpenRewriteRecipe
+        condition: "#gitBranch > ''"
+        recipe: org.openrewrite.yaml.DeleteKey
+        options:
+          keyPath: '"$.spec.source.subPath"'
     - include: ["catalog/catalog-info.yaml"]
       chain:
       - type: ReplaceText
